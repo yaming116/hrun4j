@@ -206,6 +206,10 @@ public class AssertChecker {
     /**
      *
      * @return Comparator method alias mapping relationship
+     *
+     * org.hamcrest.Matchers 所有判断方法添加别名，在方法名称长于 5 个字符（在参数大于 2 位时，别名名称为： xxx_n, xxx_2）：
+     * 1. 内定方式，固定简单别名
+     * 2. 不在内定范围内的通过字母+驼峰大写字母，转小写
      */
     public static Map<String, List> comparatorAlisaMap() {
         Map<String, List> methodMap = Maps.newHashMap();
