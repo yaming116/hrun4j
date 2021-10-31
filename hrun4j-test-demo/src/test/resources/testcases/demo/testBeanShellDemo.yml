@@ -9,6 +9,7 @@ teststeps:
       device_sn: 2021032311118
       os_platform: MacOS
       app_version: 1.0.1
+      teset: "${BSH('bsh/test.bsh')}"
     request:
       url: /api/get-token
       method: POST

@@ -20,7 +20,7 @@ import java.io.StringWriter;
  * @author lematech@foxmail.com
  * @version 1.0.1
  */
-
+// 模板引擎，Velocity
 public class TemplateEngine {
 
     private static VelocityEngine velocityEngine;
@@ -43,6 +43,31 @@ public class TemplateEngine {
             }
         }
         return velocityEngine;
+    }
+
+    /**
+     * render template by context self-defined variables
+     * @param templateName template of name
+     * @param context context
+     * @return The contents of the template after rendering
+     */
+    public static String getTemplateRenderContent(String templateName, VelocityContext context){
+        Template template;
+        try {
+            template = getInstance().getTemplate(templateName);
+        } catch (Exception e) {
+            String exceptionMsg = String.format("There was an exception getting the template %s,Exception Informations: ", templateName, e.getMessage());
+            throw new DefinedException(exceptionMsg);
+        }
+
+        StringWriter sw = new StringWriter();
+        try {
+            template.merge(context, sw);
+        } catch (Exception e) {
+            String exceptionMsg = String.format("An exception occurred in the rendering engine template %s based on the constructed data,,Exception Informations: %s", templateName, e.getMessage());
+            throw new DefinedException(exceptionMsg);
+        }
+        return sw.toString();
     }
 
 

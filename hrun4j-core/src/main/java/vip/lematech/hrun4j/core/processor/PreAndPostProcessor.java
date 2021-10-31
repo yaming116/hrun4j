@@ -44,6 +44,9 @@ public class PreAndPostProcessor {
      * @param baseModel Based on the object
      * @param requestEntity The request entity
      */
+    // 1. 存储 request 信息到 testStepConfigVariable
+    // 2. 对请求参数进行运算
+    // 3. 找到前置 hook 处理
     public void preProcess(BaseModel baseModel, RequestEntity requestEntity) {
         if (baseModel instanceof TestStep && !Objects.isNull(requestEntity)) {
             this.testStepConfigVariable.put(Constant.REQUEST_VARIABLE_NAME, requestEntity);

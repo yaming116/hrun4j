@@ -238,6 +238,10 @@ public class ExpProcessor<T> {
      * Converts data types to key-value pairs ,for variable
      * @param baseModel The base model
      */
+    // 1. 参数类型是 map，不处理？
+    // 2. 参数类型是 list，遍历里面数据
+    //   1. 字符串，使用Aviator 运算下
+    //   2. map 直接存储
     public void handleVariables2Map(BaseModel baseModel) {
         Object obj = baseModel.getVariables();
         if (obj instanceof Map) {

@@ -37,6 +37,7 @@ public class SchemaValidator {
      * @param obj Verify the object
      * @return If the string data is null, the validation is passed; otherwise, the reason for the validation failure is returned
      */
+    // 用于验证数据是否符合规范，目前支持的格式有 TestCase、ApiModel、TestSuite
     public static String validateJsonObjectFormat(Class clz, Object obj) {
         JsonNode schemaNode;
         String jsonFormatSchema;

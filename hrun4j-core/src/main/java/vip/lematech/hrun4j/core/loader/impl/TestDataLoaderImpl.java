@@ -47,6 +47,7 @@ public class TestDataLoaderImpl<T> implements ITestDataLoader {
      * @param file
      * @return
      */
+    // 按照指定 class 类型序列化本地的文件，目前支持 json、yaml
     private T fileSerialization2Object(File file, Class clazz) {
         T result;
         String testDataName = file.getName();
@@ -81,6 +82,7 @@ public class TestDataLoaderImpl<T> implements ITestDataLoader {
      * @param clazz The specified class
      * @return The generic object
      */
+    // 按照 class 类型序列化指定文件，如果 json schema 不符合格式，再按照 TestCase 尝试一次
     @Override
     public T load(File fileName, Class clazz) {
         T testData;
