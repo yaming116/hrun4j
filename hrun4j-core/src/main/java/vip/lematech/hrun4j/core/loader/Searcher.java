@@ -53,6 +53,7 @@ public class Searcher {
             throw new DefinedException(exceptionMsg);
         }
         if (StrUtil.isEmpty(FileUtil.extName(filePath))) {
+            // 不包含后缀名，则使用全局的后缀拼接
             filePath = filePath + Constant.DOT_PATH + RunnerConfig.getInstance().getTestCaseExtName();
         }
         File searchFile = null;

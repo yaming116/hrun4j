@@ -48,8 +48,10 @@ public class NGDataProvider {
             String namespace = getNamespace(pkgName, testCaseName);
             testCase = NamespaceMap.getDataObject(String.format("%s:%s", RunnerConfig.RunMode.CLI, namespace));
         } else if(RunnerConfig.getInstance().getRunMode() == RunnerConfig.RunMode.POM){
+            //caseFilePath(pkgName, testCaseName) 根据当前文件名称除去包名，获取当前 testcase 相对路径
             File dataFilePath = searcher.quicklySearchFile(caseFilePath(pkgName, testCaseName));
             String extName = RunnerConfig.getInstance().getTestCaseExtName();
+            //按照 TestCase 格式序列化当前数据
             testCase = TestDataLoaderFactory.getLoader(extName)
                     .load(dataFilePath, TestCase.class);
         }
@@ -71,11 +73,13 @@ public class NGDataProvider {
      */
     private String caseFilePath(String pkgName, String testCaseName) {
         if (pkgName.startsWith(definePackageName)) {
+            // 如果开始路径和包名一致，则获取当前相对路径，除去前面包名
             pkgName = FilesHelper.pkgPath2DirPath(pkgName.replaceFirst(definePackageName, ""));
             if (pkgName.startsWith(Constant.UNDERLINE)) {
                 pkgName = pkgName.replaceFirst(Constant.UNDERLINE, Constant.DOT_PATH);
             }
         } else {
+            // 格式化一下当前路径
             pkgName = FilesHelper.pkgPath2DirPath(pkgName);
         }
         return pkgName + File.separator + testCaseName;
